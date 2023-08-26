@@ -1,4 +1,4 @@
-package send.toyou.packagemicroapi.domain;
+package send.toyou.packagemicroapi.domain.events;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;

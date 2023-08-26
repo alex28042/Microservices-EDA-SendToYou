@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-import send.toyou.packagemicroapi.application.PackageServiceImpl;
-import send.toyou.packagemicroapi.domain.Package;
+import send.toyou.packagemicroapi.application.impl.PackageServiceImpl;
+import send.toyou.packagemicroapi.domain.persistence.Package;
 
 @RestController
 @RequestMapping("/api/package")
