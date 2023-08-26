@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/monitoring-manager/pom.xml" />
         <option value="$PROJECT_DIR$/package-delivery-manager/pom.xml" />
         <option value="$PROJECT_DIR$/package-micro-api/pom.xml" />
+        <option value="$PROJECT_DIR$/mail-manager/pom.xml" />
       </list>
     </option>
   </component>
