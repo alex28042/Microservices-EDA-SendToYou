@@ -1,0 +1,25 @@
+name: CI for package-api
+
+on:
+  pull_request:
+    branches:
+      - develop  # Cambia esto al nombre de tu rama principal
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: 17  # Cambia esto a la versión de Java que estás usando
+
+    - name: Build with Maven
+      run: |
+        cd package-micro-api
+        mvn clean install
