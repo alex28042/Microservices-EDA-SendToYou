@@ -1,24 +1,17 @@
-package send.toyou.persistencecommon.domain;
+package send.toyou.friendmicroapi;
 
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@NoArgsConstructor
-@Setter
-@Getter
-public class User {
-    private Long id;
-    private static long user_id_cont = 0;
+public class User implements Serializable{
     private String name, email, direccion, username, pwd;
     LocalDate fecha_nac;
-    ArrayList<String> Friends;
+    ArrayList<String> friends;
+    private Long id;
+    private static long id_cont = 0;
 
     public User(String name, String email, String direccion, LocalDate fecha_nac, String username, String pwd) {
         this.name = name;
@@ -27,9 +20,10 @@ public class User {
         this.fecha_nac = fecha_nac;
         this.username = username;
         this.pwd = pwd;
-        user_id_cont++;
-        id= user_id_cont;
-        Friends = new ArrayList<>();// USAR FRIENNDS AT (AMIGOS QUE YA EXISTAN)   MEJOR ARRAY DE STRINGS usando username como clave primaria
+        friends = new ArrayList<>();// USAR FRIENDS AT (AMIGOS QUE YA EXISTAN)   MEJOR ARRAY DE STRINGS usando username como clave primaria
+
+        id_cont++;
+        id= id_cont;
     }
 
     //cargando el usuario desde el archivo de texto
@@ -45,14 +39,14 @@ public class User {
         pwd = campos[5];
         String linea2 = campos[6];
         String[] amigos = linea2.split(", ");
-        if (Friends==null){
-            Friends=new ArrayList<>();
-            Friends.add("BUG");
+        if (friends ==null){
+            friends =new ArrayList<>();
+            friends.add("BUG");
         }
-        Collections.addAll(Friends, amigos);
+        Collections.addAll(friends, amigos);
     }
     public ArrayList<String> getFriends() {
-        return Friends;
+        return friends;
     }
 
     public String getUsrName(){
@@ -76,7 +70,7 @@ public class User {
 
     @Override
     public String toString() {
-        return name+":"+email+":"+direccion+":"+fecha_nac+":"+username+":"+pwd+/*":"+usrdao.listarAmigos(username)+*/":"+friendsToString(Friends.toString());
+        return name+":"+email+":"+direccion+":"+fecha_nac+":"+username+":"+pwd+/*":"+usrdao.listarAmigos(username)+*/":"+friendsToString(friends.toString());
     }
     private String friendsToString(String input){
         String[] elements = input.substring(1, input.length() - 1).split(", ");
@@ -89,11 +83,16 @@ public class User {
         }
         return output.toString();
     }
-    public void setFriends(String amigo) {
-        if (Friends==null)Friends=new ArrayList<>();
-        this.Friends.add(amigo);
-    }
 
+    public boolean isFriend(String username) {
+        return friends.contains(username);
+    }
+    public void setFriends(String amigo) {
+        if (!isFriend(amigo))friends.add(amigo);
+    }
+    public void removeFriend(String amigo) {
+        friends.remove(amigo);
+    }
     public void setNombre(String nombre) {
         this.name = nombre;
     }
@@ -102,4 +101,3 @@ public class User {
         this.username=usrname;
     }
 }
-
