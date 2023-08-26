@@ -2,7 +2,7 @@
 
 - Microservices flow:
 
-![Sent to you drawio (2)](https://github.com/alex28042/Microservices-EDA-SendToYou/assets/73026276/1637870f-6bb1-4a7a-825e-4ddf05e8d88a)
+![Sent to you drawio (3)](https://github.com/alex28042/Microservices-EDA-SendToYou/assets/73026276/4df10de9-0763-4f72-bf75-2a1da917304e)
 
 - Data model:
   
