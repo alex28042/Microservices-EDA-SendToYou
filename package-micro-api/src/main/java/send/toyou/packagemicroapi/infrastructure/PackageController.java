@@ -1,5 +1,6 @@
 package send.toyou.packagemicroapi.infrastructure;
 
+import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
@@ -8,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-import send.toyou.packagemicroapi.application.impl.PackageServiceImpl;
+import send.toyou.packagemicroapi.application.useCases.impl.PackageServiceImpl;
 import send.toyou.packagemicroapi.domain.persistence.Package;
 
 @RestController
@@ -28,11 +29,19 @@ public class PackageController {
                     }
 
                     return Mono.just(new ResponseEntity<>(packageCreated, HttpStatus.BAD_REQUEST));
-                })
-                .onErrorContinue(this::handleError);
+                });
     }
 
-    private void handleError(Throwable throwable, Object object) {
-        log.error("Error API with error: {} and object: {}", throwable, object);
+    @GetMapping("/{id}")
+    public Mono<ResponseEntity<Package>> getPackage(@RequestParam String id) {
+        return this.packageService.getPackageById(id)
+                .flatMap(pack -> {
+                    if (pack != null) {
+                        log.info("Package Finded: {}", pack);
+                        return Mono.just(new ResponseEntity<>(pack, HttpStatus.CREATED));
+                    }
+
+                    return Mono.just(new ResponseEntity<>(pack, HttpStatus.BAD_REQUEST));
+                });
     }
 }
