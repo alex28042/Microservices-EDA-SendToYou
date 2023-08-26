@@ -1,9 +1,6 @@
 package send.toyou.packagemicroapi.domain.persistence;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -11,8 +8,9 @@ import org.springframework.data.relational.core.mapping.Table;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 @Table(name = "package")
 public class Package {
-    @Id
-    private Long id;
+    private String id;
+    private String name;
 }

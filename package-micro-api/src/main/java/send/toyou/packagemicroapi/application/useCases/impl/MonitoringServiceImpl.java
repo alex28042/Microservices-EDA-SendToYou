@@ -1,9 +1,9 @@
-package send.toyou.packagemicroapi.application.impl;
+package send.toyou.packagemicroapi.application.useCases.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
-import send.toyou.packagemicroapi.application.MonitoringSevice;
+import send.toyou.packagemicroapi.application.useCases.MonitoringSevice;
 import send.toyou.packagemicroapi.domain.events.ErrorEvent;
 import send.toyou.packagemicroapi.domain.constants.MonitoringConstants;
 
