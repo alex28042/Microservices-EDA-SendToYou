@@ -1,4 +1,4 @@
-package send.toyou.packagemicroapi.domain;
+package send.toyou.packagemicroapi.domain.persistence;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
