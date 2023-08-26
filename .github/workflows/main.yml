@@ -24,4 +24,4 @@ jobs:
     - name: Build with Maven
       run: |
         cd package-micro-api
-        mvn clean install
+        mvn clean install -Plocal
