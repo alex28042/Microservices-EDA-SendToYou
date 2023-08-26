@@ -21,6 +21,7 @@ public class PackageController {
     @PostMapping
     public Mono<ResponseEntity<Package>> savePackage(@RequestBody Package packageToCreate) {
         return this.packageService.save(packageToCreate)
+                .doOnNext(packageCreated -> log.info("Package Created: {}", packageCreated))
                 .flatMap(packageCreated -> {
                     if (packageCreated.equals(packageToCreate)) {
                         return Mono.just(new ResponseEntity<>(packageCreated, HttpStatus.CREATED));
