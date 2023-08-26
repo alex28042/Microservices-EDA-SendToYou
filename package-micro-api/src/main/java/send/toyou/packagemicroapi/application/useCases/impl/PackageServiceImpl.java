@@ -31,6 +31,7 @@ public class PackageServiceImpl implements PackageService {
     @Override
     public Mono<Package> save(Package packageToCreate) {
         return MiscUtils.parsePackageWithUuid(packageToCreate)
+                .flatMap(packageRepository::save)
                 .doOnNext(packageCreated -> log.info("Package in DB with id: {}", packageCreated.getId()))
                 .flatMap(packageCreated -> {
                     if (packageCreated != null) {

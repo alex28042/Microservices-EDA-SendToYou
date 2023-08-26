@@ -31,7 +31,7 @@ public class PackageController {
                     return Mono.just(new ResponseEntity<>(packageCreated, HttpStatus.BAD_REQUEST));
                 });
     }
-    
+
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Package>> getPackage(@RequestParam String id) {
         return this.packageService.getPackageById(id)
