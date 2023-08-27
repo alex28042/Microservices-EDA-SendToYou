@@ -58,18 +58,21 @@ public class PackageServiceImpl implements PackageService {
 
                     log.info("Package not found: {}", id);
                     return Mono.empty();
-                });
+                })
+                .onErrorContinue(this::handleError);
     }
 
     @Override
     public Flux<Package> getAllPackages() {
-        return this.packageRepository.findAll();
+        return this.packageRepository.findAll()
+                .onErrorContinue(this::handleError);
     }
 
     @Override
     public Mono<Void> deletePackage(Package packageToDelete) {
         return this.packageRepository.delete(packageToDelete)
-;    }
+                .onErrorContinue(this::handleError);
+    }
 
     private void handleError(Throwable throwable, Object object) {
         log.error("Error with exception: {} and object: {}", throwable, object);
