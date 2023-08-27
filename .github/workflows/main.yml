@@ -24,4 +24,4 @@ jobs:
     - name: Build with Maven
       run: |
         cd package-micro-api
-        mvn clean install -Plocal
+        mvn clean install -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
