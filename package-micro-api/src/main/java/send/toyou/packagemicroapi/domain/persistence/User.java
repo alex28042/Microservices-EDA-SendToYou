@@ -10,5 +10,8 @@ import lombok.Setter;
 public class User {
     private Long id;
     private String name;
+    private String street;
+    private String number;
+    private String floor;
 }
 
