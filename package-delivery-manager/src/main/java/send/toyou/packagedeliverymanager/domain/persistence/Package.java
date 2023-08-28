@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.relational.core.mapping.Table;
 import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
+import send.toyou.packagedeliverymanager.domain.valueObjects.Address;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +20,6 @@ public class Package {
     private String senderUserId;
     private String receipterUserId;
     private String name;
-    private PackageStatusEnum status;
+    private String status;
     private LocalDateTime dateCreated;
 }

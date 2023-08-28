@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import send.toyou.packagemicroapi.domain.enums.PackageStatusEnum;
 import send.toyou.packagemicroapi.domain.persistence.Package;
+import send.toyou.packagemicroapi.domain.valueObjects.Address;
 
 import java.time.LocalDateTime;
 
@@ -18,8 +19,9 @@ public class NewPackageEvent {
     private String senderUserId;
     private String receipterUserId;
     private String name;
-    private PackageStatusEnum status;
+    private String status;
     private LocalDateTime dateCreated;
+    private Address addressDestination;
     public static NewPackageEvent fromPackage(Package pack) {
         return new NewPackageEvent(
                 pack.getId(),
@@ -27,7 +29,8 @@ public class NewPackageEvent {
                 pack.getReceipterUserId(),
                 pack.getName(),
                 pack.getStatus(),
-                pack.getDateCreated()
+                pack.getDateCreated(),
+                null
         );
     }
 }

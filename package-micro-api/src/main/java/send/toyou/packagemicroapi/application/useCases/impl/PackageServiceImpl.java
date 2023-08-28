@@ -10,6 +10,7 @@ import send.toyou.packagemicroapi.application.useCases.PackageService;
 import send.toyou.packagemicroapi.application.utils.MiscUtils;
 import send.toyou.packagemicroapi.domain.constants.MonitoringConstants;
 import send.toyou.packagemicroapi.domain.constants.PackageConstants;
+import send.toyou.packagemicroapi.domain.enums.PackageStatusEnum;
 import send.toyou.packagemicroapi.domain.events.NewPackageEvent;
 import send.toyou.packagemicroapi.domain.persistence.Package;
 import send.toyou.packagemicroapi.domain.repositories.PackageRepository;
@@ -36,6 +37,7 @@ public class PackageServiceImpl implements PackageService {
                 .doOnNext(packageCreated -> log.info("Package in DB with id: {}", packageCreated.getId()))
                 .flatMap(packageCreated -> {
                     if (packageCreated != null) {
+                        packageCreated.setStatus(PackageStatusEnum.PROCESSING.name());
                         return Mono.just(packageCreated);
                     }
 

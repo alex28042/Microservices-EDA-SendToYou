@@ -8,8 +8,8 @@ public class UserTest {
     @Test
     void testUser() {
         var user = new User();
-        user.setId(23L);
-        user.setName("Test");
+        user.setId("1111");
+        user.setEmail("Test");
 
         Assertions.assertNotNull(user);
     }
