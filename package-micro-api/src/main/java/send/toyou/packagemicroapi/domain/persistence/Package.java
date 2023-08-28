@@ -1,18 +1,23 @@
 package send.toyou.packagemicroapi.domain.persistence;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+import send.toyou.packagemicroapi.domain.enums.PackageStatusEnum;
+
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 @Table(name = "package")
 public class Package {
-    @Id
-    private Long id;
+    private String id;
+    private String senderUserId;
+    private String receipterUserId;
+    private String name;
+    private String status;
+    private LocalDateTime dateCreated;
 }

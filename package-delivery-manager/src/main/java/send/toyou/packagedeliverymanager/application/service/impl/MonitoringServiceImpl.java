@@ -1,14 +1,12 @@
-package send.toyou.packagemicroapi.application.impl;
+package send.toyou.packagedeliverymanager.application.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.function.StreamBridge;
-import org.springframework.stereotype.Service;
-import send.toyou.packagemicroapi.application.MonitoringSevice;
-import send.toyou.packagemicroapi.domain.events.ErrorEvent;
-import send.toyou.packagemicroapi.domain.constants.MonitoringConstants;
+import send.toyou.packagedeliverymanager.application.service.MonitoringService;
+import send.toyou.packagedeliverymanager.domain.constants.MonitoringConstants;
+import send.toyou.packagedeliverymanager.domain.events.ErrorEvent;
 
-@Service
-public class MonitoringServiceImpl implements MonitoringSevice {
+public class MonitoringServiceImpl implements MonitoringService {
     @Autowired
     private StreamBridge streamBridge;
     @Override

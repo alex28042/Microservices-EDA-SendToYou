@@ -1,0 +1,27 @@
+name: CI for package-api
+
+on:
+  pull_request:
+    branches:
+      - develop  # Cambia esto al nombre de tu rama principal
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3.6.0
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3.12.0
+      with:
+        java-version: 17 
+        distribution: adopt
+
+
+    - name: Build with Maven
+      run: |
+        cd package-micro-api
+        mvn clean install -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn

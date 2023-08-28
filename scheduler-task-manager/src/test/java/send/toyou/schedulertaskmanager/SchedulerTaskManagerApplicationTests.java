@@ -1,10 +1,10 @@
-package send.toyou.packagemicroapi;
+package send.toyou.schedulertaskmanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PackageMicroApiApplicationTests {
+class SchedulerTaskManagerApplicationTests {
 
 	@Test
 	void contextLoads() {

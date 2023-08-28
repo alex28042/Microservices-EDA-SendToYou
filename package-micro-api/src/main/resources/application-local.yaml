@@ -1,6 +1,8 @@
 server:
   port: 5000
 spring:
+  profiles:
+    active: local
   data:
     r2dbc:
       repositories:
