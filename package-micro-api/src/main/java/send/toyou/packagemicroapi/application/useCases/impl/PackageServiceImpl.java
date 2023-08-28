@@ -10,6 +10,7 @@ import send.toyou.packagemicroapi.application.useCases.PackageService;
 import send.toyou.packagemicroapi.application.utils.MiscUtils;
 import send.toyou.packagemicroapi.domain.constants.MonitoringConstants;
 import send.toyou.packagemicroapi.domain.constants.PackageConstants;
+import send.toyou.packagemicroapi.domain.events.NewPackageEvent;
 import send.toyou.packagemicroapi.domain.persistence.Package;
 import send.toyou.packagemicroapi.domain.repositories.PackageRepository;
 
@@ -43,7 +44,7 @@ public class PackageServiceImpl implements PackageService {
                 })
                 .filter(Objects::nonNull)
                 .doOnNext(packageToSend -> log.info("Package to send: {}", packageToSend))
-                .doOnNext(packageToSend -> this.streamBridge.send(PackageConstants.PACKAGE_BINDING, packageToSend))
+                .doOnNext(packageToSend -> this.streamBridge.send(PackageConstants.PACKAGE_BINDING, NewPackageEvent.fromPackage(packageToSend)))
                 .onErrorContinue(this::handleError);
     }
 
