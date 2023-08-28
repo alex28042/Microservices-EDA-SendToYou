@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.relational.core.mapping.Table;
+import send.toyou.packagedeliverymanager.domain.valueObjects.Address;
 
 @NoArgsConstructor
 @Setter
@@ -11,4 +12,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table(value = "user")
 public class User {
     private String id;
+    private String email;
+    private String street;
+    private String floor;
+    private String number;
 }

@@ -18,6 +18,6 @@ public class Package {
     private String senderUserId;
     private String receipterUserId;
     private String name;
-    private PackageStatusEnum status;
+    private String status;
     private LocalDateTime dateCreated;
 }
