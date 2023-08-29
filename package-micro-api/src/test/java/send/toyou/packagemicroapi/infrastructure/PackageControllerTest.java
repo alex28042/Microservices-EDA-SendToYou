@@ -83,6 +83,7 @@ public class PackageControllerTest {
     void testfindPackage(@Value("classpath:/insert-data.sql") Resource insert) {
         executeScriptBlocking(insert);
 
+        
         this.mockMvc.perform(get("/api/package/{id}", "test"))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
