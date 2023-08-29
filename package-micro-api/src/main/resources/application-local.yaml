@@ -1,6 +1,8 @@
 server:
   port: 5000
 spring:
+  application:
+    name: package-micro-api
   profiles:
     active: local
   data:

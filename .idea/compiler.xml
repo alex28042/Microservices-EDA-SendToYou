@@ -15,11 +15,13 @@
         <module name="persistence-common" />
         <module name="scheduler-task-manager" />
         <module name="monitoring-manager" />
+        <module name="api-gateway" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="friend-micro-api" options="-parameters" />
       <module name="mail-manager" options="-parameters" />
