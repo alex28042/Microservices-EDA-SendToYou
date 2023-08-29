@@ -4,7 +4,8 @@ Project based in Event-Driven architecture using spring boot and kafka.
 
 - Microservices flow:
 
-![Sent to you drawio (4)](https://github.com/alex28042/Microservices-EDA-SendToYou/assets/73026276/62551dae-2d87-4d91-83c2-4cb798153c64)
+![Sent to you drawio (6)](https://github.com/alex28042/Microservices-EDA-SendToYou/assets/73026276/df98ab33-38d2-4db7-a7ad-399ef6fa37db)
+
 
 - Data model:
   
