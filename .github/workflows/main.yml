@@ -3,8 +3,7 @@ name: CI for package-api
 on:
   pull_request:
     branches:
-      - develop  # Cambia esto al nombre de tu rama principal
-
+      - develop  
 jobs:
   build:
     name: Build and Test
