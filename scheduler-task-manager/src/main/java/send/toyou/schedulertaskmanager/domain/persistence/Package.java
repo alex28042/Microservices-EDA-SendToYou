@@ -1,23 +1,23 @@
-package send.toyou.packagemicroapi.domain.persistence;
+package send.toyou.schedulertaskmanager.domain.persistence;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.relational.core.mapping.Table;
-import send.toyou.packagemicroapi.domain.enums.PackageStatusEnum;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
+
+
+@Getter
 @NoArgsConstructor
 @Setter
-@Getter
-@ToString
-@Table(name = "package")
+@Table(value = "package")
 public class Package {
     private String id;
     private String senderUserId;
     private String receipterUserId;
     private String name;
     private String status;
-    private String dateCreated;
+    private LocalDateTime dateCreated;
 }

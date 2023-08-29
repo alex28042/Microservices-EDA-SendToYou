@@ -4,5 +4,5 @@ create table if not exists package (
     receipter_user_id varchar(36),
     name varchar(36),
     status varchar(15) default 'PROCESSING',
-    date_created date default current_date
+    date_created varchar(30) default current_date
 );
