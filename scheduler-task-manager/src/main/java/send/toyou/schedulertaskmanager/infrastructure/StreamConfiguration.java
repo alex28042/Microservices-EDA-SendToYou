@@ -1,8 +1,10 @@
 package send.toyou.schedulertaskmanager.infrastructure;
 
+import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Flux;
+import send.toyou.schedulertaskmanager.domain.events.JobTriggerEvent;
 
 import java.util.function.Function;
 
@@ -18,7 +20,7 @@ public class StreamConfiguration {
         return stringFlux -> stringFlux;
     }
     @Bean
-    public Function<Flux<String>, Flux<String>> duplicateTask() {
+    public Function<KStream<String, JobTriggerEvent>, KStream<String, JobTriggerEvent>> duplicateTask() {
         return stringFlux -> stringFlux;
     }
     @Bean

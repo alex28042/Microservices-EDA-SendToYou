@@ -31,7 +31,7 @@ public class UpdateJobStoreServiceImpl implements UpdateJobStoreService {
         return null;
     }
 
-    private void scheduleTask(ScheduledTaskDto scheduledTaskDto) {
+    public void scheduleTask(ScheduledTaskDto scheduledTaskDto) {
         try {
             var jobkey = new JobKey("job-" + scheduledTaskDto.getIdTask());
             var triggerKey = new TriggerKey("job-" + scheduledTaskDto.getIdTask());
@@ -49,6 +49,25 @@ public class UpdateJobStoreServiceImpl implements UpdateJobStoreService {
 
             this.quartzScheduler.scheduleJob(jobDetail, cronTrigger);
             log.info("Scheduled Task: {}", scheduledTaskDto);
+        } catch (Exception e) {
+            log.error("Error scheduling task: {}", scheduledTaskDto);
+        }
+    }
+
+    public void deleteSchedule(ScheduledTaskDto scheduledTaskDto) {
+        try {
+            var jobkey = new JobKey("job-" + scheduledTaskDto.getIdTask());
+            var triggerKey = new TriggerKey("job-" + scheduledTaskDto.getIdTask());
+
+            if (this.quartzScheduler.checkExists(jobkey)) {
+                log.warn("scheduledtask job key already exists: {}",jobkey);
+                log.info("Deleting task...");
+
+                this.quartzScheduler.unscheduleJob(triggerKey);
+                this.quartzScheduler.deleteJob(jobkey);
+            }
+
+            log.info("Deleted Task: {}", scheduledTaskDto);
         } catch (Exception e) {
             log.error("Error scheduling task: {}", scheduledTaskDto);
         }

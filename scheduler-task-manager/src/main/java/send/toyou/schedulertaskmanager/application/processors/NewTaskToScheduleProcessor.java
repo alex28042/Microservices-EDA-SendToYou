@@ -13,7 +13,7 @@ import send.toyou.schedulertaskmanager.domain.repositories.ScheduledTaskReposito
 
 @Component
 @Slf4j
-public class newTaskToScheduleProcessor {
+public class NewTaskToScheduleProcessor {
     @Autowired
     private ScheduledTaskRepository taskRepository;
 

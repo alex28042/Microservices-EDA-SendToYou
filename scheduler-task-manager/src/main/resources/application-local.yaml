@@ -1,8 +1,6 @@
 server:
   port: 5000
 spring:
-  profiles:
-    active: local
   data:
     r2dbc:
       repositories:
@@ -13,7 +11,7 @@ spring:
     password: B0zl8qFyaGh4FIuGBwe0mk8bv-XwASfj
   cloud:
     function:
-      definition:
+      definition: newTaskToSchedule;updateJob;duplicateTask;launcherTasks;deleteTask;
     stream:
       default-binder: kafka_default
       bindings:
@@ -39,11 +37,11 @@ spring:
           useNativeDecoding: true
         duplicateTask-in-0:
           destination: sendtoyou.scheduler-job-triggers
-          binder: kafka_default
+          binder: kstream_default
           useNativeDecoding: true
         duplicateTask-out-0:
           destination: sendtoyou.scheduler-launch-task
-          binder: kafka_default
+          binder: kstream_default
           useNativeDecoding: true
         launcherTasks-in-0:
           destination: sendtoyou.scheduler-launch-task
@@ -86,3 +84,20 @@ spring:
                       replicationFactor: 1
                       serdeError: logAndContinue
                       brokers: localhost:9092
+        kstream_default:
+          type: kstream
+          environment:
+            spring.cloud.stream:
+              kafka:
+                streams:
+                  binder:
+                    autoAddPartitions: true
+                    autoCreateTopics: true
+                    minPartitionCount: 3
+                    replicationFactor: 1
+                    serdeError: logAndContinue
+                    brokers: localhost:9092
+                    configuration:
+                      commit.interval.ms: 2000
+                      default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                      processing.guarantee: exactly_once

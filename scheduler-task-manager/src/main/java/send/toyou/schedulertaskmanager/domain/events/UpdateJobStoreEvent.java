@@ -10,21 +10,20 @@ import send.toyou.schedulertaskmanager.domain.persistence.ScheduleTaskAbstract;
 @NoArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
 public class UpdateJobStoreEvent extends ScheduleTaskAbstract {
 
     public UpdateJobStoreEvent(String idTask, String message, String cron, String destination, String description, String taskCreationDate, String lastExecutionDate) {
         super(idTask, message, cron, destination, description, taskCreationDate, lastExecutionDate);
     }
-    public static UpdateJobStoreEvent fromScheduleTaskDto(ScheduledTaskDto schduledTaskDto) {
+    public static UpdateJobStoreEvent fromScheduleTaskDto(ScheduledTaskDto scheduledTaskDto) {
         return new UpdateJobStoreEvent(
-                schduledTaskDto.getIdTask(),
-                schduledTaskDto.getMessage(),
-                schduledTaskDto.getCron(),
-                schduledTaskDto.getDestination(),
-                schduledTaskDto.getDescription(),
-                schduledTaskDto.getTaskCreationDate(),
-                schduledTaskDto.getLastExecutionDate()
+                scheduledTaskDto.getIdTask(),
+                scheduledTaskDto.getMessage(),
+                scheduledTaskDto.getCron(),
+                scheduledTaskDto.getDestination(),
+                scheduledTaskDto.getDescription(),
+                scheduledTaskDto.getTaskCreationDate(),
+                scheduledTaskDto.getLastExecutionDate()
         );
     }
 }

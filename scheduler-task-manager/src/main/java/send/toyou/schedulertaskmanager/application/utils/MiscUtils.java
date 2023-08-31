@@ -4,8 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.quartz.CronExpression;
 import org.springframework.util.StringUtils;
 import send.toyou.schedulertaskmanager.domain.dto.ScheduledTaskDto;
+import send.toyou.schedulertaskmanager.domain.enums.DaysCronEnum;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Slf4j
 public class MiscUtils {
@@ -37,5 +40,20 @@ public class MiscUtils {
             log.warn("cronExpression is invalid: {}", cronExpression);
             return false;
         }
+    }
+
+    public static Date getNextExecution(String cronExpr) throws ParseException{
+        CronExpression cronExpression = new CronExpression(cronExpr);
+        return cronExpression.getNextValidTimeAfter(new Date());
+    }
+
+    public static ArrayList<DaysCronEnum> convertArrayToArrayList(String[] cronExpressionDays) {
+        ArrayList<DaysCronEnum> result = new ArrayList<>();
+
+        for (String day : cronExpressionDays) {
+            result.add(DaysCronEnum.valueOf(day));
+        }
+
+        return result;
     }
 }

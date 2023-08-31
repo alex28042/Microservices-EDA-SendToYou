@@ -4,14 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
-import send.toyou.schedulertaskmanager.application.service.TaskScheduledService;
 import send.toyou.schedulertaskmanager.application.service.UpdateJobStoreService;
 import send.toyou.schedulertaskmanager.domain.dto.ScheduledTaskDto;
 import send.toyou.schedulertaskmanager.domain.events.UpdateJobStoreEvent;
 
 @Component
 @Slf4j
-public class updateJobProcessor {
+public class UpdateJobProcessor {
     @Autowired
     private UpdateJobStoreService taskScheduledService;
 

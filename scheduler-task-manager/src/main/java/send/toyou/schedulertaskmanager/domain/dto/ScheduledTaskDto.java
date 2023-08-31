@@ -1,5 +1,6 @@
 package send.toyou.schedulertaskmanager.domain.dto;
 
+import send.toyou.schedulertaskmanager.domain.events.JobTriggerEvent;
 import send.toyou.schedulertaskmanager.domain.events.UpdateJobStoreEvent;
 import send.toyou.schedulertaskmanager.domain.persistence.ScheduleTask;
 import send.toyou.schedulertaskmanager.domain.persistence.ScheduleTaskAbstract;
@@ -30,6 +31,18 @@ public class ScheduledTaskDto extends ScheduleTaskAbstract {
                 updateJobStoreEvent.getDescription(),
                 updateJobStoreEvent.getTaskCreationDate(),
                 updateJobStoreEvent.getLastExecutionDate()
+        );
+    }
+
+    public static ScheduledTaskDto fromJobTriggerEvent(JobTriggerEvent jobTriggerEvent) {
+        return new ScheduledTaskDto(
+                jobTriggerEvent.getIdTask(),
+                jobTriggerEvent.getMessage(),
+                jobTriggerEvent.getCron(),
+                jobTriggerEvent.getDestination(),
+                jobTriggerEvent.getDescription(),
+                jobTriggerEvent.getTaskCreationDate(),
+                jobTriggerEvent.getLastExecutionDate()
         );
     }
 }
