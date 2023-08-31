@@ -1,10 +1,13 @@
 package send.toyou.schedulertaskmanager.application.service.impl;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import send.toyou.schedulertaskmanager.application.service.TaskScheduledService;
+import send.toyou.schedulertaskmanager.application.service.UpdateJobStoreService;
 import send.toyou.schedulertaskmanager.application.utils.MiscUtils;
 import send.toyou.schedulertaskmanager.domain.dto.ScheduledTaskDto;
 import send.toyou.schedulertaskmanager.domain.persistence.ScheduleTask;
@@ -14,12 +17,30 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Service
 @Slf4j
 public class TaskScheduledServiceImpl implements TaskScheduledService {
     @Autowired
     private ScheduledTaskRepository taskRepository;
+
+    @Autowired
+    private UpdateJobStoreService updateJobStoreService;
+
+    @Override
+    public Flux<ScheduledTaskDto> loadAllTasks() {
+        return this.taskRepository.findAll()
+                .map(ScheduledTaskDto::fromScheduleTask)
+                .filter(this::hasFutureExecution)
+                .doOnNext(given -> log.info("Loaded task: {}", given))
+                .map(updateJobStoreService::updateJobStore);
+    }
+
+    @SneakyThrows
+    private boolean hasFutureExecution(ScheduledTaskDto scheduledTaskDto) {
+        return MiscUtils.getNextExecution(scheduledTaskDto.getCron()) != null;
+    }
 
     @Override
     public Mono<ScheduledTaskDto> saveNewTask(ScheduledTaskDto schduledTaskDto) {
