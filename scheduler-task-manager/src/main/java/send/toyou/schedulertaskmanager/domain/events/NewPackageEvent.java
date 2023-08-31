@@ -1,12 +1,11 @@
-package send.toyou.packagemicroapi.domain.events;
+package send.toyou.schedulertaskmanager.domain.events;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import send.toyou.packagemicroapi.domain.enums.PackageStatusEnum;
-import send.toyou.packagemicroapi.domain.persistence.Package;
-import send.toyou.packagemicroapi.domain.valueObjects.Address;
+import send.toyou.schedulertaskmanager.domain.persistence.Package;
+import send.toyou.schedulertaskmanager.domain.valueObjects.Address;
 
 import java.time.LocalDateTime;
 
@@ -22,6 +21,7 @@ public class NewPackageEvent {
     private String status;
     private LocalDateTime dateCreated;
     private Address addressDestination;
+
     public static NewPackageEvent fromPackage(Package pack) {
         return new NewPackageEvent(
                 pack.getId(),
@@ -29,8 +29,9 @@ public class NewPackageEvent {
                 pack.getReceipterUserId(),
                 pack.getName(),
                 pack.getStatus(),
-                pack.getDateCreated() == null ? null : LocalDateTime.parse(pack.getDateCreated()),
+                pack.getDateCreated(),
                 null
         );
     }
 }
+

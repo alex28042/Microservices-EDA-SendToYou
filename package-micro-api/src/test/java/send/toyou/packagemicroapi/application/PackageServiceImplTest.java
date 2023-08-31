@@ -54,11 +54,22 @@ public class PackageServiceImplTest {
     void packageServiceSave(@Value("classpath:/insert-data.sql") Resource insertData) {
         executeScriptBlocking(insertData);
         var pack = new Package();
-        pack.setId("111222");
+        pack.setName("test");
 
-        Mono<Package> result = this.packageService.save(pack);
+        Package result = this.packageService.save(pack).block();
 
-        Assertions.assertNotNull(result.block());
-        Assertions.assertEquals(result.block().getId(), pack.getId());
+        System.out.println(result);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getName(), pack.getName());
+    }
+
+    @Test
+    void packageServiceFindById(@Value("classpath:/insert-data.sql") Resource insertData) {
+        executeScriptBlocking(insertData);
+
+        Package result = this.packageService.getPackageById("test").block();
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getId(), "test");
     }
 }
