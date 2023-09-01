@@ -23,12 +23,14 @@ public class UpdateJobStoreServiceImpl implements UpdateJobStoreService {
 
     @Override
     public ScheduledTaskDto updateJobStore(ScheduledTaskDto scheduledTaskDto) {
-        return null;
+        this.scheduleTask(scheduledTaskDto);
+        return scheduledTaskDto;
     }
 
     @Override
     public ScheduledTaskDto deletingJobstore(ScheduledTaskDto scheduledTaskDto) {
-        return null;
+        this.deleteSchedule(scheduledTaskDto);
+        return scheduledTaskDto;
     }
 
     public void scheduleTask(ScheduledTaskDto scheduledTaskDto) {
