@@ -1,9 +1,6 @@
 package send.toyou.packagedeliverymanager.domain.events;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
 import send.toyou.packagedeliverymanager.domain.persistence.Package;
 import send.toyou.packagedeliverymanager.domain.valueObjects.Address;
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class NewPackageEvent {
     private String id;
     private String senderUserId;
