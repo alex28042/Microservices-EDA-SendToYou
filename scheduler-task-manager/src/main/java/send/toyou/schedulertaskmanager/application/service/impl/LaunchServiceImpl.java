@@ -7,9 +7,11 @@ import org.springframework.scheduling.config.ScheduledTask;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import send.toyou.schedulertaskmanager.application.service.ForgottenTaskService;
 import send.toyou.schedulertaskmanager.application.service.LaunchService;
 import send.toyou.schedulertaskmanager.application.service.MessageService;
 import send.toyou.schedulertaskmanager.application.service.TaskScheduledService;
+import send.toyou.schedulertaskmanager.domain.dto.ScheduledForgottenTask;
 import send.toyou.schedulertaskmanager.domain.dto.ScheduledTaskDto;
 
 @Service
@@ -17,8 +19,12 @@ import send.toyou.schedulertaskmanager.domain.dto.ScheduledTaskDto;
 public class LaunchServiceImpl implements LaunchService {
     @Autowired
     private MessageService messageService;
+
     @Autowired
     private TaskScheduledService taskScheduledService;
+
+    @Autowired
+    private ForgottenTaskService forgottenTaskService;
 
     @Override
     public Mono<ScheduledTaskDto> launchScheduledTask(ScheduledTaskDto scheduledTaskDto) {
@@ -38,6 +44,16 @@ public class LaunchServiceImpl implements LaunchService {
 
     @Override
     public Flux<ScheduledTaskDto> launchForgottenTasks() {
-        return null;
+        return this.taskScheduledService.loadAllTasks()
+                .flatMap(task -> {
+                  final var scheduledForgottenTask = ScheduledForgottenTask.fromScheduledDto(task);
+
+                  if (this.forgottenTaskService.isForgottenTask(scheduledForgottenTask)) {
+                      log.info("Fogotten task: {}", task);
+                      return this.launchScheduledTask(task);
+                  }
+
+                  return Mono.empty();
+                });
     }
 }
