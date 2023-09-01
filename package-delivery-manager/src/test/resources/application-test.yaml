@@ -15,7 +15,7 @@ spring:
       default-binder: kafka_default
       bindings:
         monitoring-out-0:
-          destination: sendtoyou.api-errors
+          destination: sendtoyou.ingestion-errors
           binder: kafka_default
           useNativeDecoding: true
         newPackageBinding-in-0:
