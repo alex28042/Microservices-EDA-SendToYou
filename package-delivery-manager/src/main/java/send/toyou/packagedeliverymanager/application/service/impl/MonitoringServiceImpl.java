@@ -12,7 +12,7 @@ public class MonitoringServiceImpl implements MonitoringService {
     @Override
     public void sendValidationErrors(Object object, String errorFrom, String description) {
         var errorEvent = new ErrorEvent();
-        
+
         errorEvent.setObject(object);
         errorEvent.setErrorFrom(errorFrom);
         errorEvent.setDescription(description);

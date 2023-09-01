@@ -7,6 +7,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import send.toyou.packagedeliverymanager.application.service.NewPackageService;
 import send.toyou.packagedeliverymanager.application.service.impl.NewPackageServiceImpl;
+import send.toyou.packagedeliverymanager.application.utils.MiscUtils;
 import send.toyou.packagedeliverymanager.domain.events.NewPackageEvent;
 import send.toyou.packagedeliverymanager.domain.events.NewScheduledTaskEvent;
 
@@ -27,7 +28,7 @@ public class NewPackageProcessor {
                     final var newScheduledTaskEvent = new NewScheduledTaskEvent();
                     newScheduledTaskEvent.setIdTask(UUID.randomUUID().toString());
                     newScheduledTaskEvent.setCron("0 30 14 * * ?");
-                    newScheduledTaskEvent.setMessage(newPackageEvent.toString());
+                    newScheduledTaskEvent.setMessage(MiscUtils.convertClassToMessage(newPackageEvent));
 
                     return Flux.just(newScheduledTaskEvent);
                 })
