@@ -1,10 +1,12 @@
 package send.toyou.packagedeliverymanager.domain.persistence;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.relational.core.mapping.Table;
 import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
+import send.toyou.packagedeliverymanager.domain.events.PackageProcessedEvent;
 import send.toyou.packagedeliverymanager.domain.valueObjects.Address;
 
 import java.time.LocalDateTime;
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Table(value = "package")
 public class Package {
@@ -22,4 +25,15 @@ public class Package {
     private String name;
     private String status;
     private LocalDateTime dateCreated;
+
+    public static Package fromPackageProcessedEvent(PackageProcessedEvent packageProcessedEvent) {
+        return new Package(
+            packageProcessedEvent.getId(),
+            packageProcessedEvent.getSenderUserId(),
+            packageProcessedEvent.getReceipterUserId(),
+            packageProcessedEvent.getName(),
+            packageProcessedEvent.getStatus(),
+            packageProcessedEvent.getDateCreated()
+        );
+    }
 }

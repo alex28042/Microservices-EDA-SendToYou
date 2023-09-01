@@ -1,7 +1,9 @@
 package send.toyou.packagedeliverymanager.domain.events;
 
-import lombok.*;
-import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import send.toyou.packagedeliverymanager.domain.persistence.Package;
 import send.toyou.packagedeliverymanager.domain.valueObjects.Address;
 
@@ -11,14 +13,13 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @ToString(callSuper = true)
-public class NewPackageEvent extends PackageEventFields {
-
-    public NewPackageEvent(String id, String senderUserId, String receipterUserId, String name, String status, LocalDateTime dateCreated, Address addressDestination) {
+public class PackageProcessedEvent extends PackageEventFields {
+    public PackageProcessedEvent(String id, String senderUserId, String receipterUserId, String name, String status, LocalDateTime dateCreated, Address addressDestination) {
         super(id, senderUserId, receipterUserId, name, status, dateCreated, addressDestination);
     }
 
-    public static NewPackageEvent fromPackage(Package pack) {
-        return new NewPackageEvent(
+    public static PackageProcessedEvent fromPackage(Package pack) {
+        return new PackageProcessedEvent(
                 pack.getId(),
                 pack.getSenderUserId(),
                 pack.getReceipterUserId(),
@@ -29,4 +30,3 @@ public class NewPackageEvent extends PackageEventFields {
         );
     }
 }
-

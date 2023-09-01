@@ -1,10 +1,8 @@
 package send.toyou.packagedeliverymanager.domain.persistence;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
+import send.toyou.packagedeliverymanager.domain.events.PackageProcessedEvent;
 
 @Getter
 @Setter
