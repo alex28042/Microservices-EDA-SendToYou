@@ -45,7 +45,7 @@ public class PackageProcessedProcessor {
                 .doOnNext(task -> log.info("Task to be created: {}", task))
                 .onErrorContinue(this::handleError);
     }
-    
+
     private void handleError(Throwable throwable, Object object) {
         log.error("Error in PackageProcessedProcessor");
     }

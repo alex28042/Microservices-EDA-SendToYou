@@ -7,7 +7,6 @@ import send.toyou.packagedeliverymanager.domain.events.PackageProcessedEvent;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString(callSuper = true)
 @Table(value = "scheduled_task")
 public class ScheduleTask extends ScheduleTaskAbstract {
