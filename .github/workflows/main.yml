@@ -5,8 +5,8 @@ on:
     branches:
       - develop  
 jobs:
-  build:
-    name: Build and Test
+  build-package-api:
+    name: Build and Test package API
     runs-on: ubuntu-latest
 
     steps:
@@ -23,4 +23,23 @@ jobs:
     - name: Build with Maven
       run: |
         cd package-micro-api
+        mvn clean install -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+  build-package:
+    name: Build and Test Package Delivey
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3.6.0
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3.12.0
+      with:
+        java-version: 17 
+        distribution: adopt
+
+
+    - name: Build with Maven
+      run: |
+        cd package-delivery-manager
         mvn clean install -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
