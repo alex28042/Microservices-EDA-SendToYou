@@ -11,15 +11,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
-public class NewPackageEvent {
-    private String id;
-    private String senderUserId;
-    private String receipterUserId;
-    private String name;
-    private String status;
-    private LocalDateTime dateCreated;
-    private Address addressDestination;
+@ToString(callSuper = true)
+public class NewPackageEvent extends PackageEventFields {
+
+    public NewPackageEvent(String id, String senderUserId, String receipterUserId, String name, String status, LocalDateTime dateCreated, Address addressDestination) {
+        super(id, senderUserId, receipterUserId, name, status, dateCreated, addressDestination);
+    }
 
     public static NewPackageEvent fromPackage(Package pack) {
         return new NewPackageEvent(

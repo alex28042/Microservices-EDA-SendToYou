@@ -15,4 +15,9 @@ public class StreamConfiguration {
     public Function<Flux<NewPackageEvent>, Flux<NewScheduledTaskEvent>> newPackageBinding(final NewPackageProcessor newPackageProcessor) {
         return newPackageProcessor::process;
     }
+
+    @Bean
+    public Function<Flux<NewPackageEvent>, Flux<NewScheduledTaskEvent>> packageProcessedBinding(final NewPackageProcessor newPackageProcessor) {
+        return newPackageProcessor::process;
+    }
 }
