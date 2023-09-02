@@ -21,20 +21,20 @@ import org.springframework.r2dbc.connection.init.ScriptUtils;
 import org.springframework.test.context.ActiveProfiles;
 import reactor.core.publisher.Mono;
 import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
-import send.toyou.packagedeliverymanager.domain.events.NewPackageEvent;
 import send.toyou.packagedeliverymanager.domain.events.NewScheduledTaskEvent;
+import send.toyou.packagedeliverymanager.domain.events.PackageProcessedEvent;
 
 @SpringBootTest
 @ActiveProfiles("test")
 @Import(TestChannelBinderConfiguration.class)
-public class NewPackageProcessorTest {
+public class PackageProcessedTest {
     @Autowired
     private OutputDestination outputDestination;
 
     @Autowired
     private InputDestination inputDestination;
 
-    private final int TIME_OUT = 5000;
+    private final int TIME_OUT = 100;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -59,18 +59,18 @@ public class NewPackageProcessorTest {
     }
     @SneakyThrows
     @Test
-    void processTest(@Value("classpath:/insert-data.sql") Resource insert) {
-        executeScriptBlocking(insert);
+    void processTest(@Value("classpath:/insert-data.sql") Resource resource) {
+        executeScriptBlocking(resource);
 
-        var packageEvent = new NewPackageEvent();
+        var packageEvent = new PackageProcessedEvent();
         packageEvent.setId("test");
         packageEvent.setSenderUserId("1");
         packageEvent.setReceipterUserId("2");
         packageEvent.setStatus(PackageStatusEnum.PROCESSING.name());
 
-        MessageBuilder<NewPackageEvent> packageEventMessageBuilder = MessageBuilder.withPayload(packageEvent);
+        MessageBuilder<PackageProcessedEvent> packageEventMessageBuilder = MessageBuilder.withPayload(packageEvent);
 
-        this.inputDestination.send(packageEventMessageBuilder.build(), "sendtoyou.new-package-event");
+        this.inputDestination.send(packageEventMessageBuilder.build(), "sendtoyou.package-processed-event");
 
         Message<byte[]> errorResponse = outputDestination.receive(TIME_OUT, "sendtoyou.scheduler-new-task-event");
 
@@ -79,5 +79,6 @@ public class NewPackageProcessorTest {
         Assertions.assertThat(output).isNotNull();
         Assertions.assertThat(output.getIdTask().length()).isEqualTo(36);
         Assertions.assertThat(output.getMessage()).isNotNull();
+        Assertions.assertThat(output.getMessage()).contains(PackageStatusEnum.SENDING.name());
     }
 }

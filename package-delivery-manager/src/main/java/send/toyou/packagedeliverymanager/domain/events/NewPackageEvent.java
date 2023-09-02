@@ -24,7 +24,7 @@ public class NewPackageEvent extends PackageEventFields {
                 pack.getReceipterUserId(),
                 pack.getName(),
                 pack.getStatus(),
-                pack.getDateCreated(),
+                pack.getDateCreated() == null ? null : LocalDateTime.parse(pack.getDateCreated()),
                 null
         );
     }
