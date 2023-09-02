@@ -35,6 +35,14 @@ spring:
           destination: sendtoyou.scheduler-new-task-event
           binder: kafka_default
           useNativeDecoding: true
+        packageDeliveredBinding-in-0:
+          destination: sendtoyou.package-sent-event
+          binder: kafka_default
+          useNativeDecoding: true
+        packageDeliveredBinding-out-0:
+          destination: sendtoyou.scheduler-task-to-be-deleted
+          binder: kafka_default
+          useNativeDecoding: true
       binders:
         kafka_default:
           type: kafka

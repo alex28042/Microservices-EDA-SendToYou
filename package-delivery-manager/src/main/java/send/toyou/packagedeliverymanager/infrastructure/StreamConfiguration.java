@@ -8,6 +8,8 @@ import send.toyou.packagedeliverymanager.application.processors.PackageProcessed
 import send.toyou.packagedeliverymanager.domain.events.NewPackageEvent;
 import send.toyou.packagedeliverymanager.domain.events.NewScheduledTaskEvent;
 import send.toyou.packagedeliverymanager.domain.events.PackageProcessedEvent;
+import send.toyou.packagedeliverymanager.application.processors.PackageSentProcessor;
+import send.toyou.packagedeliverymanager.domain.events.*;
 
 import java.util.function.Function;
 
@@ -21,5 +23,10 @@ public class StreamConfiguration {
     @Bean
     public Function<Flux<PackageProcessedEvent>, Flux<NewScheduledTaskEvent>> packageSendingBinding(final PackageProcessedProcessor packageProcessedProcessor) {
         return packageProcessedProcessor::process;
+    }
+
+    @Bean
+    public Function<Flux<PackageSentEvent>, Flux<NewDeleteTaskEvent>> packageDeliveredBinding(final PackageSentProcessor packageSentProcessor) {
+        return packageSentProcessor::process;
     }
 }
