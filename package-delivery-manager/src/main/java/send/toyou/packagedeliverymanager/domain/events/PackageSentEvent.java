@@ -5,7 +5,6 @@ import send.toyou.packagedeliverymanager.domain.valueObjects.Address;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString(callSuper = true)
