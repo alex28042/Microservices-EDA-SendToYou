@@ -35,7 +35,7 @@ public class PackageProcessedProcessorTest {
     @Autowired
     private InputDestination inputDestination;
 
-    private final int TIME_OUT = 5000;
+    private final int TIME_OUT = 100;
 
     @Autowired
     private ObjectMapper objectMapper;
