@@ -9,7 +9,4 @@ public interface PackageRepository extends R2dbcRepository<Package, String> {
     @Override
     @Query("select * from package where id = $1")
     Mono<Package> findById(String s);
-
-    @Override
-    <S extends Package> Mono<S> save(S entity);
 }
