@@ -59,8 +59,8 @@ public class PackageProcessedTest {
     }
     @SneakyThrows
     @Test
-    void processTest(@Value("classpath:/insert-data.sql") Resource insert) {
-        executeScriptBlocking(insert);
+    void processTest(@Value("classpath:/insert-data.sql") Resource resource) {
+        executeScriptBlocking(resource);
 
         var packageEvent = new PackageProcessedEvent();
         packageEvent.setId("test");

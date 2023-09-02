@@ -24,8 +24,6 @@ import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
 import send.toyou.packagedeliverymanager.domain.events.NewPackageEvent;
 import send.toyou.packagedeliverymanager.domain.events.NewScheduledTaskEvent;
 
-import java.util.UUID;
-
 @SpringBootTest
 @ActiveProfiles("test")
 @Import(TestChannelBinderConfiguration.class)
