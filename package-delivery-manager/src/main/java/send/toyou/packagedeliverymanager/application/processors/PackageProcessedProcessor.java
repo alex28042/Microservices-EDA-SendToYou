@@ -47,6 +47,6 @@ public class PackageProcessedProcessor {
     }
 
     private void handleError(Throwable throwable, Object object) {
-        log.error("Error in PackageProcessedProcessor");
+        log.error("Error in PackageProcessedProcessor exception: {} with object: {}", throwable, object);
     }
 }

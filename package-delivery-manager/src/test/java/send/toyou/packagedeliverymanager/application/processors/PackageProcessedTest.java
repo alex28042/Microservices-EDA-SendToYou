@@ -21,14 +21,13 @@ import org.springframework.r2dbc.connection.init.ScriptUtils;
 import org.springframework.test.context.ActiveProfiles;
 import reactor.core.publisher.Mono;
 import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
-import send.toyou.packagedeliverymanager.domain.events.NewPackageEvent;
 import send.toyou.packagedeliverymanager.domain.events.NewScheduledTaskEvent;
 import send.toyou.packagedeliverymanager.domain.events.PackageProcessedEvent;
 
 @SpringBootTest
 @ActiveProfiles("test")
 @Import(TestChannelBinderConfiguration.class)
-public class PackageProcessedProcessorTest {
+public class PackageProcessedTest {
     @Autowired
     private OutputDestination outputDestination;
 

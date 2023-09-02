@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
-@Table(value = "package")
+@Table(name = "package")
 @ToString
 public class Package {
     private String id;
@@ -22,7 +22,7 @@ public class Package {
     private String receipterUserId;
     private String name;
     private String status;
-    private LocalDateTime dateCreated;
+    private String dateCreated;
 
     public static Package fromPackageProcessedEvent(PackageProcessedEvent packageProcessedEvent) {
         return new Package(
@@ -31,7 +31,7 @@ public class Package {
             packageProcessedEvent.getReceipterUserId(),
             packageProcessedEvent.getName(),
             packageProcessedEvent.getStatus(),
-            packageProcessedEvent.getDateCreated()
+            packageProcessedEvent.getDateCreated() == null ? null : packageProcessedEvent.getDateCreated().toString()
         );
     }
 }

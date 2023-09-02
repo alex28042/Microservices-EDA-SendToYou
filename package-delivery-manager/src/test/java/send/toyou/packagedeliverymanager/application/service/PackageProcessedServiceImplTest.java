@@ -85,10 +85,11 @@ public class PackageProcessedServiceImplTest {
         pack.setId("111111");
         pack.setName("fafff");
 
-        this.packageProcessedService.save(pack).block();
+        this.packageRepository.save(pack)
+                .subscribe();
 
-        Package packFound = this.packageRepository.findById(pack.getId()).block();
+        Mono<Package> packFound = this.packageRepository.findById(pack.getId());
 
-        Assertions.assertNotNull(packFound);
+        Assertions.assertNotNull(packFound.block());
     }
 }
