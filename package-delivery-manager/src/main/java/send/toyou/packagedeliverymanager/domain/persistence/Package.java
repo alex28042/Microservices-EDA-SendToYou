@@ -1,9 +1,6 @@
 package send.toyou.packagedeliverymanager.domain.persistence;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
 import send.toyou.packagedeliverymanager.domain.events.PackageProcessedEvent;
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Setter
 @Table(value = "package")
+@ToString
 public class Package {
     private String id;
     private String senderUserId;

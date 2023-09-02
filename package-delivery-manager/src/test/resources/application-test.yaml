@@ -10,7 +10,7 @@ spring:
     pool.enabled: false
   cloud:
     function:
-      definition: newPackageBinding;
+      definition: newPackageBinding;packageSendingBinding;
     stream:
       default-binder: kafka_default
       bindings:
@@ -23,6 +23,14 @@ spring:
           binder: kafka_default
           useNativeDecoding: true
         newPackageBinding-out-0:
+          destination: sendtoyou.scheduler-new-task-event
+          binder: kafka_default
+          useNativeDecoding: true
+        packageSendingBinding-in-0:
+          destination: sendtoyou.package-processed-event
+          binder: kafka_default
+          useNativeDecoding: true
+        packageSendingBinding-out-0:
           destination: sendtoyou.scheduler-new-task-event
           binder: kafka_default
           useNativeDecoding: true

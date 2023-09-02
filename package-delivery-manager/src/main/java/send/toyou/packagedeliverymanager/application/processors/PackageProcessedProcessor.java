@@ -31,7 +31,7 @@ public class PackageProcessedProcessor {
                 })
                 .flatMap(packageProcessedService::save)
                 .map(PackageProcessedEvent::fromPackage)
-                .map(packageProcessedService::getPackageDestinationAddress)
+                .flatMap(packageProcessedService::getPackageDestinationAddress)
                 .doOnNext(pack -> log.info("Package to be Scheduled: {}", pack))
                 .flatMap(pack -> {
                     var scheduledTaskEvent = new NewScheduledTaskEvent();
