@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import send.toyou.packagedeliverymanager.application.service.EmailService;
 import send.toyou.packagedeliverymanager.application.service.PackageProcessedService;
 import send.toyou.packagedeliverymanager.application.utils.MiscUtils;
 import send.toyou.packagedeliverymanager.domain.enums.PackageStatusEnum;
@@ -20,6 +21,9 @@ public class PackageProcessedProcessor {
     @Autowired
     private PackageProcessedService packageProcessedService;
 
+    @Autowired
+    private EmailService emailService;
+
     public Flux<NewScheduledTaskEvent> process(final Flux<PackageProcessedEvent> inbound) {
         return inbound
                 .doOnNext(pack -> log.info("Entry package processed: {}", pack))
@@ -33,6 +37,8 @@ public class PackageProcessedProcessor {
                 .map(PackageProcessedEvent::fromPackage)
                 .flatMap(packageProcessedService::getPackageDestinationAddress)
                 .doOnNext(pack -> log.info("Package to be Scheduled: {}", pack))
+                .doOnNext(emailService::sendEmail)
+                .doOnNext(pack -> log.info("Email sent to: {}", pack.getReceipterUserId()))
                 .flatMap(pack -> {
                     var scheduledTaskEvent = new NewScheduledTaskEvent();
 
