@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true)
 public class NewPackageEvent extends PackageEventFields {
 
-    public NewPackageEvent(String id, String senderUserId, String receipterUserId, String name, String status, LocalDateTime dateCreated, Address addressDestination) {
-        super(id, senderUserId, receipterUserId, name, status, dateCreated, addressDestination);
+    public NewPackageEvent(String id, String senderUserId, String receipterUserId, int packageSize, String name, String status, LocalDateTime dateCreated, Address addressDestination) {
+        super(id, senderUserId, receipterUserId, packageSize, name, status, dateCreated, addressDestination);
     }
 
     public static NewPackageEvent fromPackage(Package pack) {
@@ -22,6 +22,7 @@ public class NewPackageEvent extends PackageEventFields {
                 pack.getId(),
                 pack.getSenderUserId(),
                 pack.getReceipterUserId(),
+                pack.getPackageSize(),
                 pack.getName(),
                 pack.getStatus(),
                 pack.getDateCreated() == null ? null : LocalDateTime.parse(pack.getDateCreated()),

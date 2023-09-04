@@ -70,7 +70,7 @@ public class NewPackageProcessorTest {
 
         MessageBuilder<NewPackageEvent> packageEventMessageBuilder = MessageBuilder.withPayload(packageEvent);
 
-        this.inputDestination.send(packageEventMessageBuilder.build(), "sendtoyou.new-package-event");
+        this.inputDestination.send(packageEventMessageBuilder.build(), "sendtoyou.new-package-eligible-completed");
 
         Message<byte[]> errorResponse = outputDestination.receive(TIME_OUT, "sendtoyou.scheduler-new-task-event");
 
