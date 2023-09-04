@@ -1,7 +1,7 @@
-package send.toyou.packagedeliverymanager.domain.events;
+package send.toyou.eligibilitypackagemanager.domain.events;
 
 import lombok.*;
-import send.toyou.packagedeliverymanager.domain.valueObjects.Address;
+import send.toyou.eligibilitypackagemanager.domain.valueObjects.Address;
 
 import java.time.LocalDateTime;
 

@@ -19,7 +19,7 @@ spring:
           binder: kafka_default
           useNativeDecoding: true
         newPackageBinding-in-0:
-          destination: sendtoyou.new-package-event
+          destination: sendtoyou.new-package-eligible-completed
           binder: kafka_default
           useNativeDecoding: true
         newPackageBinding-out-0:

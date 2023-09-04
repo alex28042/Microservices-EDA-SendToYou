@@ -17,6 +17,7 @@ public class Package {
     private String id;
     private String senderUserId;
     private String receipterUserId;
+    private int packageSize;
     private String name;
     private String status;
     private String dateCreated;

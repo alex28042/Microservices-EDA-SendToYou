@@ -21,6 +21,7 @@ public class Package {
     private String id;
     private String senderUserId;
     private String receipterUserId;
+    private int packageSize;
     private String name;
     private String status;
     private String dateCreated;
@@ -30,6 +31,7 @@ public class Package {
             packageProcessedEvent.getId(),
             packageProcessedEvent.getSenderUserId(),
             packageProcessedEvent.getReceipterUserId(),
+            packageProcessedEvent.getPackageSize(),
             packageProcessedEvent.getName(),
             packageProcessedEvent.getStatus(),
             packageProcessedEvent.getDateCreated() == null ? null : packageProcessedEvent.getDateCreated().toString()
@@ -41,6 +43,7 @@ public class Package {
                 packageSentEvent.getId(),
                 packageSentEvent.getSenderUserId(),
                 packageSentEvent.getReceipterUserId(),
+                packageSentEvent.getPackageSize(),
                 packageSentEvent.getName(),
                 packageSentEvent.getStatus(),
                 packageSentEvent.getDateCreated() == null ? null : packageSentEvent.getDateCreated().toString()
