@@ -30,12 +30,13 @@ public class EligibilityServiceImpl implements EligibilityService {
     }
 
     private boolean isEligiblePackage(NewPackageEvent newPackageEvent) {
-        if (newPackageEvent.getPackageSize() > PackageConstants.MAX_SIZE) {
+        if (
+            newPackageEvent.getPackageSize() > PackageConstants.MAX_SIZE ||
+            newPackageEvent.getPackageSize() < PackageConstants.MIN_SIZE
+        ) {
             return false;
         }
 
         return newPackageEvent.getSenderUserId() != null && newPackageEvent.getReceipterUserId() != null;
     }
-
-
 }

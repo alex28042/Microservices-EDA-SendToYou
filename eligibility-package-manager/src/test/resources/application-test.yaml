@@ -1,14 +1,11 @@
 server:
   port: 4000
 spring:
-  data:
-    r2dbc:
-      repositories:
-        enabled: true
-  r2dbc:
-    url: r2dbc:postgres://itszlhhc:B0zl8qFyaGh4FIuGBwe0mk8bv-XwASfj@trumpet.db.elephantsql.com/itszlhhc
-    username: itszlhhc
-    password: B0zl8qFyaGh4FIuGBwe0mk8bv-XwASfj
+  datasource:
+    url: r2dbc:h2:mem:///sty
+    username: sa
+    password:
+    pool.enabled: false
   cloud:
     function:
       definition: eligibilityBinding;
