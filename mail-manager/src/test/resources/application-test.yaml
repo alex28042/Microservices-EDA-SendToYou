@@ -1,0 +1,61 @@
+server:
+  port: 4000
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:
+    password:
+    properties:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+  datasource:
+    url: r2dbc:h2:mem:///sty
+    username: sa
+    password:
+    pool.enabled: false
+  cloud:
+    function:
+      definition: emailProcessor;
+    stream:
+      default-binder: kafka_default
+      bindings:
+        monitoring-out-0:
+          destination: sendtoyou.ingestion-errors
+          binder: kafka_default
+          useNativeDecoding: true
+        emailProcessor-in-0:
+          destination: sendtoyou.new-email-event
+          binder: kafka_default
+          useNativeDecoding: true
+        emailProcessor-out-0:
+          destination: sendtoyou.email-completed
+          binder: kafka_default
+          useNativeDecoding: true
+      binders:
+        kafka_default:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    default:
+                      consumer:
+                        configuration:
+                          session.timeout.ms: 60000
+                          max.poll.records: 10
+                      producer:
+                        compressionType: gzip
+                        configuration:
+                          max.request.size: 322232
+                    binder:
+                      autoAddPartitions: true
+                      autoCreateTopics: true
+                      requiredAcks: -1
+                      minPartitionCount: 3
+                      replicationFactor: 1
+                      serdeError: logAndContinue
+                      brokers: localhost:9092
