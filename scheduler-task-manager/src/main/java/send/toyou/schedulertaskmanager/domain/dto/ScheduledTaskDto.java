@@ -10,7 +10,6 @@ import send.toyou.schedulertaskmanager.domain.persistence.ScheduleTaskAbstract;
 @Setter
 @Getter
 @ToString(callSuper = true)
-@AllArgsConstructor
 public class ScheduledTaskDto extends ScheduleTaskAbstract {
     public ScheduledTaskDto(String idTask, String message, String cron, String destination, String description, String taskCreationDate, String lastExecutionDate) {
         super(idTask, message, cron, destination, description, taskCreationDate, lastExecutionDate);

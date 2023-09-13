@@ -13,6 +13,7 @@ import org.springframework.cloud.stream.binder.test.TestChannelBinderConfigurati
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.config.ScheduledTask;
 import org.springframework.test.context.ActiveProfiles;
+import reactor.core.publisher.Flux;
 import send.toyou.schedulertaskmanager.application.service.TaskScheduledService;
 import send.toyou.schedulertaskmanager.domain.dto.ScheduledTaskDto;
 import send.toyou.schedulertaskmanager.domain.events.NewScheduledTaskEvent;
@@ -89,5 +90,13 @@ public class TaskScheduleProcessorTest {
 
         utilities.when(() -> ScheduleTask.fromNewScheduledTaskEvent(newScheduledTaskEvent))
                 .thenReturn(scheduleTask);
+        utilitiesUpdate.when(() -> UpdateJobStoreEvent.fromScheduleTaskDto(scheduledTaskDto))
+                .thenReturn(updateJobStoreEvent);
+
+        var input = Flux.just(newScheduledTaskEvent);
+
+        var result = processor.process(input).collectList().block();
+
+        System.out.println(result);
     }
 }
