@@ -20,7 +20,7 @@ public class EmailServiceImpl implements EmailService {
     public Mono<EmailCompletedEvent> sendEmail(NewEmailPackageEvent event) {
         var emailContent = new SimpleMailMessage();
 
-        emailContent.setFrom("email sender");
+        emailContent.setFrom("sendtoyou722@gmail.com");
         emailContent.setTo(event.getEmailReceipter());
         emailContent.setSubject("Package Status");
         emailContent.setText(event.getPackageStatusEnum().name());

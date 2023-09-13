@@ -57,16 +57,13 @@ public class MailProcessorTest {
         this.executeScriptBlocking(resource);
 
         var newEmailPackageEvent = new NewEmailPackageEvent();
-
-        newEmailPackageEvent.setEmailReceipter("fff");
+        newEmailPackageEvent.setEmailReceipter("alonso.garcia.dev@gmail.com");
         newEmailPackageEvent.setPackageStatusEnum(PackageStatusEnum.PROCESSING);
 
         Message<NewEmailPackageEvent> message = MessageBuilder.withPayload(newEmailPackageEvent).build();
-
         this.inputDestination.send(message, "sendtoyou.new-email-event");
 
         var result = this.outputDestination.receive(TIME_OUT, "sendtoyou.email-completed");
-
         var emailCompleted = result.getPayload();
 
         Assertions.assertThat(emailCompleted).isNotNull();
