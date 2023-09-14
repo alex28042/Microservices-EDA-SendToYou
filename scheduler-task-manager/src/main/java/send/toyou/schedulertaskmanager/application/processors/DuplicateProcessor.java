@@ -8,7 +8,7 @@ import org.apache.kafka.streams.state.KeyValueStore;
 import send.toyou.schedulertaskmanager.domain.events.JobTriggerEvent;
 
 public class DuplicateProcessor {
-    private static final String STORE_NAME = "job-triggers-store";
+    public static final String STORE_NAME = "job-triggers-store";
 
     public KStream<String, JobTriggerEvent> process(final KStream<String, JobTriggerEvent> inbound) {
         return inbound.transform(Deduplicate::new, STORE_NAME).selectKey(((key, value) -> null));

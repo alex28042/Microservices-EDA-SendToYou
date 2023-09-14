@@ -2,8 +2,6 @@ package send.toyou.schedulertaskmanager.application.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
-import org.quartz.core.QuartzScheduler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.stereotype.Service;
@@ -18,8 +16,11 @@ import java.util.Map;
 @Service
 @Slf4j
 public class UpdateJobStoreServiceImpl implements UpdateJobStoreService {
-    @Autowired
-    private Scheduler quartzScheduler;
+    private final Scheduler quartzScheduler;
+
+    public UpdateJobStoreServiceImpl(Scheduler quartzScheduler) {
+        this.quartzScheduler = quartzScheduler;
+    }
 
     @Override
     public ScheduledTaskDto updateJobStore(ScheduledTaskDto scheduledTaskDto) {
