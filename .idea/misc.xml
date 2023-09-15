@@ -9,7 +9,6 @@
         <option value="$PROJECT_DIR$/package-delivery-manager/pom.xml" />
         <option value="$PROJECT_DIR$/package-micro-api/pom.xml" />
         <option value="$PROJECT_DIR$/mail-manager/pom.xml" />
-        <option value="$PROJECT_DIR$/common/pom.xml" />
         <option value="$PROJECT_DIR$/persistence-common/pom.xml" />
         <option value="$PROJECT_DIR$/scheduler-task-manager/pom.xml" />
       </list>

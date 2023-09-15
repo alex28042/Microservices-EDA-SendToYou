@@ -11,7 +11,6 @@
         <module name="package-delivery-manager" />
         <module name="mail-manager" />
         <module name="package-micro-api" />
-        <module name="common" />
         <module name="persistence-common" />
         <module name="scheduler-task-manager" />
         <module name="monitoring-manager" />
