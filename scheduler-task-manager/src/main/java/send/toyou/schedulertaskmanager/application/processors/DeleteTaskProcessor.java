@@ -13,9 +13,7 @@ import send.toyou.schedulertaskmanager.domain.repositories.ScheduledTaskReposito
 @Component
 @Slf4j
 public class DeleteTaskProcessor {
-
     private final UpdateJobStoreService updateJobStoreService;
-
 
     private final ScheduledTaskRepository scheduledTaskRepository;
 
