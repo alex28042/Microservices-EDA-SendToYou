@@ -11,20 +11,36 @@ spring:
     password: B0zl8qFyaGh4FIuGBwe0mk8bv-XwASfj
   cloud:
     function:
-      definition: newPackageBinding;
+      definition: newPackageBinding;packageSendingBinding;
     stream:
       default-binder: kafka_default
       bindings:
         monitoring-out-0:
-          destination: sendtoyou.api-errors
+          destination: sendtoyou.ingestion-errors
           binder: kafka_default
           useNativeDecoding: true
         newPackageBinding-in-0:
-          destination: sendtoyou.new-package-event
+          destination: sendtoyou.new-package-eligible-completed
           binder: kafka_default
           useNativeDecoding: true
         newPackageBinding-out-0:
-          destination: sendtoyou.new-package-completed-event
+          destination: sendtoyou.scheduler-new-task-event
+          binder: kafka_default
+          useNativeDecoding: true
+        packageSendingBinding-in-0:
+          destination: sendtoyou.package-processed-event
+          binder: kafka_default
+          useNativeDecoding: true
+        packageSendingBinding-out-0:
+          destination: sendtoyou.scheduler-new-task-event
+          binder: kafka_default
+          useNativeDecoding: true
+        packageDeliveredBinding-in-0:
+          destination: sendtoyou.package-sent-event
+          binder: kafka_default
+          useNativeDecoding: true
+        packageDeliveredBinding-out-0:
+          destination: sendtoyou.scheduler-task-to-be-deleted
           binder: kafka_default
           useNativeDecoding: true
       binders:

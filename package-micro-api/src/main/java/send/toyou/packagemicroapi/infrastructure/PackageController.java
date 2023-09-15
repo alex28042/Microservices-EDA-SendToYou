@@ -35,6 +35,7 @@ public class PackageController {
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Package>> getPackage(@RequestParam String id) {
         return this.packageService.getPackageById(id)
+                .doOnNext(pack -> log.info("Package found out: {}", pack))
                 .flatMap(pack -> {
                     if (pack != null) {
                         log.info("Package Finded: {}", pack);

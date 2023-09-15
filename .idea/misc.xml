@@ -11,7 +11,15 @@
         <option value="$PROJECT_DIR$/mail-manager/pom.xml" />
         <option value="$PROJECT_DIR$/persistence-common/pom.xml" />
         <option value="$PROJECT_DIR$/scheduler-task-manager/pom.xml" />
+        <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/eligibility-package-manager/pom.xml" />
+        <option value="$PROJECT_DIR$/maven-config/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/maven-config/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="openjdk-20" project-jdk-type="JavaSDK">

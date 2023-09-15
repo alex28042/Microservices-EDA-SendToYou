@@ -52,7 +52,7 @@ public class PackageServiceImpl implements PackageService {
 
     @Override
     public Mono<Package> getPackageById(String id) {
-        return this.packageRepository.findById(id)
+        return this.packageRepository.findByIdPackage(id)
                 .doOnNext(pack -> log.info("Find Package with id: {}", pack))
                 .flatMap(pack -> {
                     if (pack != null) {

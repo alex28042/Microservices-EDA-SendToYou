@@ -19,6 +19,7 @@ public class NewPackageServiceImpl implements NewPackageService {
     @Override
     public Mono<NewPackageEvent> getPackageDestinationAddress(NewPackageEvent pack) {
         return this.userRepository.findById(pack.getReceipterUserId())
+                .doOnNext(user -> log.info("User Receipter: {}", user))
                 .flatMap(user -> {
                     if (user == null) {
                         log.info("User not found for id: {}", pack.getReceipterUserId());

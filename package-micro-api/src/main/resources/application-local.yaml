@@ -1,8 +1,13 @@
 server:
   port: 5000
 spring:
+  application:
+    name: package-micro-api
   profiles:
     active: local
+  config:
+    activate:
+      on-profile: "local"
   data:
     r2dbc:
       repositories:

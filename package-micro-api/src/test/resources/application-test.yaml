@@ -1,6 +1,8 @@
 server:
   port: 5000
 spring:
+  application:
+    name: package-micro-api
   datasource:
     url: r2dbc:h2:mem:///sty
     username: sa
