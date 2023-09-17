@@ -53,6 +53,7 @@ public class PackageServiceImplTest {
     @Test
     void packageServiceSave(@Value("classpath:/insert-data.sql") Resource insertData) {
         executeScriptBlocking(insertData);
+
         var pack = new Package();
         pack.setName("test");
 
