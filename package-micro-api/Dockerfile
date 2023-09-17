@@ -6,5 +6,5 @@ RUN mvn -e -B package -DskipTests
 
 FROM openjdk:20
 COPY --from=builder target/package-micro-api-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 3000
-CMD ["java","-jar", "/app.jar"]
+EXPOSE 5000
+CMD ["java", "-Dspring.profiles.active=local","-jar", "/app.jar"]
