@@ -3,6 +3,7 @@ package send.toyou.friendmicroapi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class FriendMicroApiApplication {
 

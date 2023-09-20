@@ -1,2 +1,34 @@
 server:
-  port: 8080
+  port: 5000
+spring:
+  application:
+    name: friend-micro-api
+  profiles:
+    active: local
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+  r2dbc:
+    url: r2dbc:postgres://itszlhhc:B0zl8qFyaGh4FIuGBwe0mk8bv-XwASfj@trumpet.db.elephantsql.com/itszlhhc
+    username: itszlhhc
+    password: B0zl8qFyaGh4FIuGBwe0mk8bv-XwASfj
+  cloud:
+    function:
+      definition:
+    stream:
+      default-binder: kafka_default
+      bindings:
+        monitoring-out-0:
+          destination: sendtoyou.api-errors
+          binder: kafka_default
+          useNativeDecoding: true
+        packageBinding-out-0:
+          destination: sendtoyou.new-package-event
+          binder: kafka_default
+          useNativeDecoding: true
+      binders:
+        kafka_default:
+          type: kafka
+          environment:
+            spring:

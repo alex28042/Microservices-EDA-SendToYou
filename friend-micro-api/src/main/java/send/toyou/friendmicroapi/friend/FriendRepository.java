@@ -10,7 +10,6 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface FriendRepository extends R2dbcRepository<Friend, String>{
-    @Query("SELECT f FROM Friend f WHERE f.name = ?1")
+    @Query("SELECT f FROM Friend f WHERE f.name = $1")
     Mono<Friend> findFriendByName(String name);
-
 }
