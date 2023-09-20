@@ -19,6 +19,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="common" target="17" />
       <module name="maven-config" target="17" />
     </bytecodeTargetLevel>
   </component>

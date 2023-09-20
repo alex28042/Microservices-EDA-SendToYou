@@ -3,8 +3,6 @@ server:
 spring:
   application:
     name: friend-micro-api
-  profiles:
-    active: local
   data:
     r2dbc:
       repositories:
