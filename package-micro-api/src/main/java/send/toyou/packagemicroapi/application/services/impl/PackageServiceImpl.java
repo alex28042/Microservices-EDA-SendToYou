@@ -1,4 +1,4 @@
-package send.toyou.packagemicroapi.application.useCases.impl;
+package send.toyou.packagemicroapi.application.services.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,7 @@ import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import send.toyou.packagemicroapi.application.useCases.PackageService;
+import send.toyou.packagemicroapi.application.services.PackageService;
 import send.toyou.packagemicroapi.application.utils.MiscUtils;
 import send.toyou.packagemicroapi.domain.constants.MonitoringConstants;
 import send.toyou.packagemicroapi.domain.constants.PackageConstants;
@@ -16,7 +16,6 @@ import send.toyou.packagemicroapi.domain.persistence.Package;
 import send.toyou.packagemicroapi.domain.repositories.PackageRepository;
 
 import java.util.Objects;
-import java.util.UUID;
 
 @Service
 @Slf4j

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: package-micro-api
+spec:
+  selector:
+    app: package-micro-api
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30000
+  type: NodePort
+  
