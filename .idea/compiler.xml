@@ -12,7 +12,6 @@
         <module name="mail-manager" />
         <module name="eligibility-package-manager" />
         <module name="package-micro-api" />
-        <module name="common" />
         <module name="persistence-common" />
         <module name="scheduler-task-manager" />
         <module name="monitoring-manager" />
@@ -20,6 +19,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="common" target="17" />
       <module name="maven-config" target="17" />
     </bytecodeTargetLevel>
   </component>
