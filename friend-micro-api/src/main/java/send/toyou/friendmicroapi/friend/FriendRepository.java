@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import reactor.core.publisher.Mono;
 
-@Repository
+@Repository("customFriendRepository")
 public interface FriendRepository extends R2dbcRepository<Friend, String>{
     @Query("SELECT f FROM Friend f WHERE f.name = $1")
     Mono<Friend> findFriendByName(String name);

@@ -1,5 +1,8 @@
 server:
   port: 5000
+  servlet:
+    session:
+      timeout: 1800
 spring:
   application:
     name: friend-micro-api
@@ -30,3 +33,5 @@ spring:
           type: kafka
           environment:
             spring:
+              profiles:
+                active: local
