@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: package-micro-api
+  labels:
+    app: package-micro-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: package-micro-api
+  template:
+    metadata:
+      name: package-micro-api
+      labels:
+        app: package-micro-api
+    spec:
+      containers:
+        - name: package-micro-api
+          image: alexaloonsoo/package-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+      restartPolicy: Always
+      

@@ -1,6 +1,5 @@
 package send.toyou.packagemicroapi.infrastructure;
 
-import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-import send.toyou.packagemicroapi.application.useCases.impl.PackageServiceImpl;
+import send.toyou.packagemicroapi.application.services.PackageService;
+import send.toyou.packagemicroapi.application.services.impl.PackageServiceImpl;
 import send.toyou.packagemicroapi.domain.persistence.Package;
 
 @RestController
@@ -17,7 +17,7 @@ import send.toyou.packagemicroapi.domain.persistence.Package;
 @Slf4j
 public class PackageController {
     @Autowired
-    private PackageServiceImpl packageService;
+    private PackageService packageService;
 
     @PostMapping
     public Mono<ResponseEntity<Package>> savePackage(@RequestBody Package packageToCreate) {

@@ -1,4 +1,4 @@
-package send.toyou.packagemicroapi.application.useCases;
+package send.toyou.packagemicroapi.application.services;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

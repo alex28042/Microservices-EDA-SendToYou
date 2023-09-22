@@ -9,15 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.stream.binder.test.TestChannelBinderConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.Resource;
 import org.springframework.r2dbc.connection.init.ScriptUtils;
 import org.springframework.test.context.ActiveProfiles;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.test.StepVerifier;
-import send.toyou.packagemicroapi.application.useCases.impl.PackageServiceImpl;
+import send.toyou.packagemicroapi.application.services.impl.PackageServiceImpl;
 import send.toyou.packagemicroapi.domain.persistence.Package;
 import send.toyou.packagemicroapi.domain.repositories.PackageRepository;
 
