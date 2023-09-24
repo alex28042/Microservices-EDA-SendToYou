@@ -6,6 +6,8 @@ eureka:
     fetchRegistry: false
     service-url:
       default-zone: http://localhost:8761/eureka/
+  server:
+    waitTimeInMsWhenSyncEmpty: 0    #wait time for subsequent sync
 server:
   port: 8761
 spring:
