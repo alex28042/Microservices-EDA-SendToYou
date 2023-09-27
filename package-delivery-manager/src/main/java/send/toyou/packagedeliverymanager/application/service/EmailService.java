@@ -1,5 +1,7 @@
 package send.toyou.packagedeliverymanager.application.service;
 
+import reactor.core.publisher.Mono;
+
 public interface EmailService {
-    void sendEmail(Object object);
+    Mono<Void> sendEmail(Object object);
 }

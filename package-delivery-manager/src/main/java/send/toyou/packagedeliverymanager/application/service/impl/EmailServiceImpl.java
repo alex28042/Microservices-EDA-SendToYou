@@ -1,6 +1,7 @@
 package send.toyou.packagedeliverymanager.application.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
@@ -23,15 +24,19 @@ public class EmailServiceImpl implements EmailService {
     private StreamBridge streamBridge;
 
     @Override
-    public void sendEmail(Object object) {
-        if (!(object instanceof PackageEventFields)) {
-            log.error("{} cant be sent by email", object);
-            return;
-        }
+    public Mono<Void> sendEmail(Object object) {
+        return Mono.just(object)
+                .filter(objectFiltered -> (objectFiltered instanceof PackageEventFields))
+                .map(objectFiltered -> {
+                    return (PackageEventFields) objectFiltered;
+                })
+                .flatMap(this::getNewEmailPackageEvent)
+                .then();
+    }
 
-        var packageToSendEmail = (PackageEventFields) object;
-
-        this.userRepository.findById(packageToSendEmail.getReceipterUserId())
+    @NotNull
+    private Mono<NewEmailPackageEvent> getNewEmailPackageEvent(PackageEventFields objectFiltered) {
+        return this.userRepository.findById(objectFiltered.getReceipterUserId())
                 .doOnNext(user -> log.info("User to send email: {}", user))
                 .flatMap(user -> {
                     if (user.getEmail().isBlank() || user.getEmail() == null) {
@@ -42,12 +47,11 @@ public class EmailServiceImpl implements EmailService {
                     var emailEvent = new NewEmailPackageEvent();
 
                     emailEvent.setEmailReceipter(user.getEmail());
-                    emailEvent.setPackageStatusEnum(PackageStatusEnum.valueOf(packageToSendEmail.getStatus()));
+                    emailEvent.setPackageStatusEnum(PackageStatusEnum.valueOf(objectFiltered.getStatus()));
 
                     return Mono.just(emailEvent);
                 })
                 .doOnNext(emailEvent -> log.info("Email event loaded: {}", emailEvent))
                 .doOnNext(emailEvent -> this.streamBridge.send(EmailConstants.EMAIL_TOPIC, emailEvent));
-
     }
 }
