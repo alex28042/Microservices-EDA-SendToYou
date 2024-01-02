@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: package-route
+          uri: http://localhost:5000
+          predicates:
+            - Path=/api/package/**
+          filters:
+            - AuthenticationFilter
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true

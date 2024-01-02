@@ -16,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 import reactor.core.publisher.Mono;
 import send.toyou.packagemicroapi.application.services.impl.PackageServiceImpl;
 import send.toyou.packagemicroapi.domain.persistence.Package;
-import send.toyou.packagemicroapi.domain.repositories.PackageRepository;
+import send.toyou.packagemicroapi.infrastructure.repositories.PackageRepository;
 
 @SpringBootTest
 @ActiveProfiles("test")

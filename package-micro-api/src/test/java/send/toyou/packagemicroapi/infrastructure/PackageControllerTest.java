@@ -78,9 +78,9 @@ public class PackageControllerTest {
                 .andDo(print());
     }
 
-   @SneakyThrows
+    @SneakyThrows
     @Test
-    void testfindPackage(@Value("classpath:/insert-data.sql") Resource insert) {
+    void testFindPackage(@Value("classpath:/insert-data.sql") Resource insert) {
         executeScriptBlocking(insert);
         
         this.mockMvc.perform(get("/api/package/{id}", "test"))

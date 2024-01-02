@@ -16,3 +16,9 @@ create table if not exists "user" (
     floor varchar(10),
     number varchar(6)
 );
+
+
+
+create table if not exists "templates" (
+    id text
+);

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import send.toyou.packagemicroapi.domain.enums.PackageStatusEnum;
 import send.toyou.packagemicroapi.domain.persistence.Package;
 import send.toyou.packagemicroapi.domain.valueObjects.Address;
 

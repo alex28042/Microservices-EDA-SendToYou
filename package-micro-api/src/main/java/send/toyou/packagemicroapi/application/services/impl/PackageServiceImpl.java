@@ -13,7 +13,7 @@ import send.toyou.packagemicroapi.domain.constants.PackageConstants;
 import send.toyou.packagemicroapi.domain.enums.PackageStatusEnum;
 import send.toyou.packagemicroapi.domain.events.NewPackageEvent;
 import send.toyou.packagemicroapi.domain.persistence.Package;
-import send.toyou.packagemicroapi.domain.repositories.PackageRepository;
+import send.toyou.packagemicroapi.infrastructure.repositories.PackageRepository;
 
 import java.util.Objects;
 
